@@ -56,7 +56,7 @@ public class MockDataGenerator {
     private Map<Object, Object> generateMap(ParameterizedType parameterizedType, int initialCapacity) {
         Map<Object, Object> resultMap = new LinkedHashMap();
         Type[] nestedMapTypes = parameterizedType.getActualTypeArguments();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < initialCapacity; i++) {
             resultMap.put(populate(nestedMapTypes[0], initialCapacity), populate(nestedMapTypes[1], initialCapacity));
         }
         return resultMap;
@@ -65,7 +65,7 @@ public class MockDataGenerator {
     private List<Object> generateList(ParameterizedType parameterizedType, int initialCapacity) {
         Type nestedListType = parameterizedType.getActualTypeArguments()[0];
         List<Object> resultList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < initialCapacity; i++) {
             resultList.add(populate(nestedListType, initialCapacity));
         }
         return resultList;
