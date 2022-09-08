@@ -1,4 +1,4 @@
-package com.knubisoft;
+package com.knubisoft.utils;
 
 import lombok.Getter;
 
@@ -11,6 +11,6 @@ public abstract class GenericClass<T> {
 
     public GenericClass(T t) {
         this.t = t;
-        this.type = this.getClass().getGenericSuperclass();;
+        this.type = this.getClass().getGenericSuperclass();
     }
 }
