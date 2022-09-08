@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61629de9-8e21-4295-844e-9a392d76f296" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/knubisoft/utils/MockDataGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/knubisoft/GenericClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/knubisoft/utils/GenericClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/knubisoft/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/knubisoft/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +53,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662537571890</updated>
-      <workItem from="1662537573239" duration="34526000" />
+      <workItem from="1662537573239" duration="35252000" />
     </task>
     <servers />
   </component>
@@ -83,7 +81,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/knubisoft/Main.java</url>
-          <line>21</line>
+          <line>19</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>

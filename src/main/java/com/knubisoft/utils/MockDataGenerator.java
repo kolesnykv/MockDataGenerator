@@ -10,6 +10,11 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class MockDataGenerator {
+
+    private final int initialCapacity;
+    public MockDataGenerator (int initialCapacity) {
+        this.initialCapacity = initialCapacity;
+    }
     static Map<Class<?>, Supplier<Object>> generator = new LinkedHashMap<>();
 
     static {
@@ -20,20 +25,20 @@ public class MockDataGenerator {
     }
 
     @SneakyThrows
-    public Object populate(Type type, int initialCapacity) {
+    public Object populate(Type type) {
         if (type instanceof ParameterizedType parameterizedType) {
             Type incomeRawType = parameterizedType.getRawType();
             if (List.class.isAssignableFrom((Class<?>) incomeRawType)) {
-                return generateList(parameterizedType, initialCapacity);
+                return generateList(parameterizedType);
             }
             if (Map.class.isAssignableFrom((Class<?>) incomeRawType)) {
-                return generateMap(parameterizedType, initialCapacity);
+                return generateMap(parameterizedType);
             }
         }
         if (isSimpleType(type)) {
             return generator.get(type).get();
         } else {
-            return generateCustomClassInstance((Class) type, initialCapacity);
+            return generateCustomClassInstance((Class) type);
         }
     }
     public Type unpackGenericClass(Type type) {
@@ -42,31 +47,31 @@ public class MockDataGenerator {
     }
 
     @SneakyThrows
-    private Object generateCustomClassInstance(Class type, int initialCapacity) {
+    private Object generateCustomClassInstance(Class type) {
         Class<?> cls = Class.forName(type.getName());
         Field[] fields = cls.getDeclaredFields();
         Object instance = cls.getDeclaredConstructor().newInstance();
         for (Field f : fields) {
             f.setAccessible(true);
-            f.set(instance, populate(f.getGenericType(), initialCapacity));
+            f.set(instance, populate(f.getGenericType()));
         }
         return instance;
     }
 
-    private Map<Object, Object> generateMap(ParameterizedType parameterizedType, int initialCapacity) {
+    private Map<Object, Object> generateMap(ParameterizedType parameterizedType) {
         Map<Object, Object> resultMap = new LinkedHashMap();
         Type[] nestedMapTypes = parameterizedType.getActualTypeArguments();
         for (int i = 0; i < initialCapacity; i++) {
-            resultMap.put(populate(nestedMapTypes[0], initialCapacity), populate(nestedMapTypes[1], initialCapacity));
+            resultMap.put(populate(nestedMapTypes[0]), populate(nestedMapTypes[1]));
         }
         return resultMap;
     }
 
-    private List<Object> generateList(ParameterizedType parameterizedType, int initialCapacity) {
+    private List<Object> generateList(ParameterizedType parameterizedType) {
         Type nestedListType = parameterizedType.getActualTypeArguments()[0];
         List<Object> resultList = new ArrayList<>();
         for (int i = 0; i < initialCapacity; i++) {
-            resultList.add(populate(nestedListType, initialCapacity));
+            resultList.add(populate(nestedListType));
         }
         return resultList;
     }
